@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es-CO"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VISERA · Gorras de moda urbana en Colombia (demo)</title>
+<meta name="description" content="Tienda de gorras streetwear para Colombia. Catálogo de demostración con carrito, filtros y checkout preparado.">
+<meta property="og:title" content="VISERA · Gorras de moda urbana"><meta property="og:description" content="Gorras con carácter. Precios en COP."><meta property="og:type" content="website">
+<style>
+:root{--bg:#f6f4ef;--fg:#141414;--mut:#6b675f;--card:#fff;--line:#e2ded4;--acc:#c8501e;--onacc:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111;--fg:#f2efe8;--mut:#a09b90;--card:#1b1b1a;--line:#2c2b29;--acc:#e5733f;--onacc:#111}}
+:root[data-theme=dark]{--bg:#111;--fg:#f2efe8;--mut:#a09b90;--card:#1b1b1a;--line:#2c2b29;--acc:#e5733f;--onacc:#111}
+html{height:100%;scroll-behavior:smooth}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Impact,"Arial Narrow Bold",system-ui,sans-serif;letter-spacing:.02em;text-transform:uppercase;line-height:1;margin:0}
+a{color:inherit}button,select,input,textarea{font:inherit;color:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+.bar{background:var(--fg);color:var(--bg);text-align:center;font-size:13px;padding:7px 12px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:14px;height:62px}
+.logo{font:900 26px Impact,system-ui,sans-serif;letter-spacing:.08em;text-decoration:none}.logo b{color:var(--acc)}
+nav{display:flex;gap:18px;margin-left:18px;flex:1}nav a{text-decoration:none;font-size:14px;font-weight:600}nav a:hover{color:var(--acc)}
+.btn{border:1px solid var(--fg);background:transparent;padding:11px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px;text-decoration:none;display:inline-block;min-height:44px;transition:.2s}
+.btn.p{background:var(--acc);border-color:var(--acc);color:var(--onacc)}.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.ic{border:0;background:none;cursor:pointer;min-width:44px;min-height:44px;font-size:20px;position:relative}
+.ic i{position:absolute;top:4px;right:2px;background:var(--acc);color:var(--onacc);font:700 11px system-ui;border-radius:99px;padding:1px 6px;font-style:normal}
+#menu{display:none}
+.search{flex:0 1 220px}.search input{width:100%;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:48px 0}
+.hero h1{font-size:clamp(48px,9vw,104px)}.hero h1 em{color:var(--acc);font-style:normal}
+.hero p{color:var(--mut);max-width:46ch;font-size:18px}.hero .art{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px}
+section{padding:44px 0}h2{font-size:clamp(30px,5vw,46px);margin-bottom:22px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.col{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;text-align:left;transition:.2s}
+.col:hover{border-color:var(--acc);transform:translateY(-2px)}.col b{display:block;font:700 22px Impact,system-ui;text-transform:uppercase;margin:6px 0 2px}
+.col span{color:var(--mut);font-size:13px}
+.shop{display:grid;grid-template-columns:230px 1fr;gap:26px}
+.filters{display:grid;gap:12px;align-content:start;font-size:14px}.filters label{display:grid;gap:4px;font-weight:600}
+.filters select,.filters input[type=text]{padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:6px;animation:in .4s both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.card .im{background:var(--bg);border-radius:12px;padding:10px;position:relative;cursor:pointer}
+.tag{position:absolute;left:8px;top:8px;background:var(--fg);color:var(--bg);font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px}
+.demo{position:absolute;right:8px;bottom:6px;font-size:10px;color:var(--mut)}
+.fav{position:absolute;right:6px;top:4px;border:0;background:none;font-size:22px;cursor:pointer;min-width:40px;min-height:40px}
+.brand{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}.price{font-weight:800;font-size:18px}
+.dots{display:flex;gap:6px}.dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}.dot.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--bg) inset}
+.row{display:flex;gap:8px;margin-top:auto}.row .btn{flex:1;padding:9px 8px;font-size:13px}
+.empty{padding:40px;text-align:center;color:var(--mut);border:1px dashed var(--line);border-radius:18px;grid-column:1/-1}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.trust div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.trust h3{font-size:20px;margin-bottom:8px}.trust p{margin:0;color:var(--mut);font-size:14px}
+footer{background:var(--fg);color:var(--bg);padding:40px 0 90px;font-size:14px}
+footer .g{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}footer button{background:none;border:0;color:inherit;opacity:.8;cursor:pointer;padding:6px 0;display:block;text-align:left}footer button:hover{opacity:1;text-decoration:underline}
+dialog{border:1px solid var(--line);border-radius:20px;background:var(--bg);color:var(--fg);max-width:min(760px,94vw);width:100%;padding:22px;max-height:90vh}
+dialog::backdrop{background:#0008}
+.x{float:right}.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(420px,100%);background:var(--bg);border-left:1px solid var(--line);z-index:9;transform:translateX(105%);transition:transform .3s;padding:18px;padding-top:calc(18px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:10px}
+.drawer.open{transform:none}.items{flex:1;overflow:auto;display:grid;gap:10px;align-content:start}
+.li{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px}
+.qty{display:flex;gap:6px;align-items:center}.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer}
+.sum{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:4px}.sum div{display:flex;justify-content:space-between}
+form{display:grid;gap:10px}form label{display:grid;gap:3px;font-size:13px;font-weight:600}
+form input,form select,form textarea{padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.err{color:#c0392b;font-size:12px;min-height:14px}.note{font-size:12px;color:var(--mut)}
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;background:#1fa855;color:#fff;border-radius:99px;padding:12px 18px;font-weight:700;text-decoration:none;border:0;cursor:pointer}
+.wa[aria-disabled=true]{background:#777;cursor:not-allowed}
+#toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:.3s;z-index:20;font-size:14px}#toast.on{opacity:1}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:6px;text-align:right}th:first-child,td:first-child{text-align:left}
+.tw{overflow-x:auto}.adm input{width:100px;padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--card)}
+@media(max-width:820px){.hero,.shop,.two,footer .g{grid-template-columns:1fr}nav{display:none}nav.open{display:grid;position:absolute;top:62px;left:0;right:0;background:var(--bg);padding:14px 18px;border-bottom:1px solid var(--line);margin:0}#menu{display:block}.search{flex:1}.filters{grid-template-columns:1fr 1fr}.hero{padding:26px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<div class="bar" id="top"></div>
+<header><div class="wrap nav">
+<button class="ic" id="menu" aria-label="Abrir menú">☰</button>
+<a class="logo" href="#" id="logo"></a>
+<nav id="nav"><a href="#inicio">Inicio</a><a href="#tienda">Tienda</a><a href="#marcas">Marcas</a><a href="#colecciones">Colecciones</a><a href="#confianza">Ayuda</a></nav>
+<div class="search"><input id="q" type="search" placeholder="Buscar gorras…" aria-label="Buscar gorras"></div>
+<button class="ic" id="favB" aria-label="Favoritos">♡<i id="favN">0</i></button>
+<button class="ic" id="cartB" aria-label="Abrir carrito">🛒<i id="cartN">0</i></button>
+</div></header>
+
+<main id="inicio">
+<div class="wrap hero">
+<div><h1>Tu cabeza, <em>tu firma.</em></h1><p>Gorras con carácter para quienes visten la calle como lenguaje propio. Elige tu silueta, define tu estilo.</p>
+<p style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn p" href="#tienda">Explorar colección</a><a class="btn" href="#tienda" id="heroB">Descubrir modelos</a></p></div>
+<div class="art" id="heroArt" role="img" aria-label="Ilustración provisional de una gorra"></div>
+</div>
+
+<section id="marcas"><div class="wrap"><h2>Colecciones</h2><p class="note" id="colNote"></p><div class="cols" id="cols"></div></div></section>
+
+<section id="tienda"><div class="wrap"><h2>Tienda</h2>
+<div class="shop"><div class="filters" id="filters">
+<label>Marca<select id="fBrand"></select></label>
+<label>Tipo<select id="fType"></select></label>
+<label>Color<select id="fColor"></select></label>
+<label>Precio máx.: <span id="pv"></span><input type="range" id="fPrice"></label>
+<label>Ordenar<select id="fSort"><option value="rel">Relevancia</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option></select></label>
+<label><span><input type="checkbox" id="fStock"> Solo disponibles</span></label>
+<label><span><input type="checkbox" id="fNew"> Novedades</span></label>
+<button class="btn" id="fClear">Limpiar filtros</button></div>
+<div><p class="note" id="count"></p><div class="grid" id="grid" aria-live="polite"></div></div></div></div></section>
+
+<section id="confianza"><div class="wrap"><h2>Compra con claridad</h2><div class="trust">
+<div><h3>Cómo comprar</h3><p>Elige tu gorra y color, añádela al carrito y completa tus datos de entrega. Te confirmaremos el pedido.</p></div>
+<div><h3>Envíos</h3><p>Cobertura, costos y tiempos: por confirmar con el proveedor antes del lanzamiento.</p></div>
+<div><h3>Medios de pago</h3><p>Se configuran con el proveedor de pagos elegido. Aún no hay pagos activos en esta demo.</p></div>
+<div><h3>Cambios y devoluciones</h3><p>Política por definir según el proveedor y la normativa colombiana de protección al consumidor.</p></div>
+<div><h3>Estado del pedido</h3><p>Se habilitará al conectar el seguimiento de envíos. Mientras tanto, escríbenos por WhatsApp.</p></div>
+<div><h3>Contacto</h3><p>Número de WhatsApp por configurar en <code>CFG.whatsapp</code>.</p></div></div></div></section>
+<section id="adminSec" hidden><div class="wrap adm"><h2>Admin · Rentabilidad (demo)</h2>
+<p class="note">Vista solo demostrativa. En producción debe vivir tras autenticación en un backend; aquí el costo interno está en el JS público.</p>
+<p><label>Envío asumido <input type="number" id="aShip" value="0"></label> <label>Comisión % <input type="number" id="aCom" value="0" step=".1"></label> <label>Publicidad/venta <input type="number" id="aAds" value="0"></label> <label>Otros variables <input type="number" id="aOth" value="0"></label> <label>Costos fijos/mes <input type="number" id="aFix" value="0"></label> <label>Pedidos/mes <input type="number" id="aOrd" value="10"></label></p>
+<div class="tw"><table id="fin"></table></div><p class="note" id="finNote"></p></div></section>
+</main>
+
+<footer><div class="wrap g"><div><div class="logo" id="flogo"></div><p>Gorras de moda urbana para Colombia. Sitio en construcción: catálogo y datos de demostración.</p></div>
+<div><b>Ayuda</b><button data-pol="faq">Preguntas frecuentes</button><button data-pol="ret">Cambios y devoluciones</button><button id="waF">WhatsApp</button><a href="#adminSec" id="admL" style="opacity:.5;font-size:12px">Admin (demo)</a></div>
+<div><b>Legal</b><button data-pol="priv">Política de privacidad</button><button data-pol="terms">Términos y condiciones</button><button data-pol="data">Tratamiento de datos personales</button></div></div></footer>
+
+<a class="wa" id="wa" target="_blank" rel="noopener" aria-disabled="true">WhatsApp</a>
+<aside class="drawer" id="drawer" aria-label="Carrito"><div><button class="btn x" id="cartX">Cerrar</button><h3>Tu carrito</h3></div><div class="items" id="items"></div><div class="sum" id="sum"></div><button class="btn p" id="goCk">Continuar al checkout</button></aside>
+
+<dialog id="dlg"><button class="btn x" id="dlgX">Cerrar</button><div id="dlgB"></div></dialog>
+<dialog id="ck"><button class="btn x" id="ckX">Cerrar</button><h3>Checkout</h3>
+<form id="form" novalidate><label>Nombre completo<input name="n" required autocomplete="name"></label>
+<label>Correo electrónico<input name="e" type="email" required autocomplete="email"></label>
+<label>Teléfono móvil (10 dígitos)<input name="t" inputmode="numeric" required autocomplete="tel"></label>
+<label>Departamento<select name="d" required id="dep"></select></label>
+<label>Ciudad o municipio<input name="c" required></label>
+<label>Dirección de entrega<input name="a" required autocomplete="street-address"></label>
+<label>Indicaciones adicionales<textarea name="i" rows="2"></textarea></label>
+<div class="sum" id="ckSum"></div><div class="err" id="ckErr" role="alert"></div>
+<button class="btn p" type="submit">Confirmar pedido (demo)</button>
+<p class="note">Demo: no se crea ningún pedido real ni se procesa ningún pago. En producción, el servidor valida precios, inventario y pago.</p></form></dialog>
+<div id="toast" role="status"></div>
+
+<script>
+/* ===== CONFIGURACIÓN CENTRAL ===== */
+const CFG={brand:"VISERA",bar:"Catálogo de demostración · Condiciones de envío por confirmar",
+whatsapp:"", /* ej. "573001234567" */ shipping:null /* COP; null = por confirmar */,
+cols:[{k:"brand",v:"Colección propia",d:"Diseños de la casa"},{k:"brand",v:"Marca Demo Norte",d:"Marca ficticia"},{k:"brand",v:"Marca Demo Sur",d:"Marca ficticia"},
+{k:"type",v:"Snapback",d:"Visera plana"},{k:"type",v:"Trucker",d:"Malla trasera"},{k:"type",v:"Clásica",d:"Curva, ajustable"}]};
+/* Productos DEMO (ficticios). Reemplazar por catálogo real / Dropi. */
+const C={neg:["Negro","#1a1a1a"],blan:["Hueso","#e9e4d6"],ter:["Terracota","#c8501e"],ver:["Verde","#3d5a45"],azu:["Azul","#27406b"],are:["Arena","#c9b48a"]};
+const mk=(id,name,brand,type,price,cost,cols,stock,isNew,best)=>({id,name,brand,type,price,cost,colors:cols.map(c=>C[c]),stock,isNew,best,status:"published",desc:"Modelo de demostración. Descripción, materiales y autenticidad se completarán con datos verificados del proveedor."});
+const P=[mk(1,"Pico Alto","Colección propia","Snapback",89000,42000,["neg","ter"],12,1,0),mk(2,"Calle 80","Colección propia","Trucker",79000,36000,["blan","azu"],8,0,1),
+mk(3,"Norte Clásica","Marca Demo Norte","Clásica",95000,48000,["neg","are","ver"],5,1,0),mk(4,"Norte Sport","Marca Demo Norte","Trucker",85000,41000,["azu","neg"],0,0,0),
+mk(5,"Sur Flat","Marca Demo Sur","Snapback",99000,50000,["ver","neg"],7,0,1),mk(6,"Sur Urbana","Marca Demo Sur","Clásica",92000,45000,["are","blan"],3,1,0),
+mk(7,"Arrabal","Colección propia","Snapback",84000,39000,["ter","blan"],10,0,0),mk(8,"Cumbre","Marca Demo Norte","Snapback",105000,54000,["ver","ter","neg"],6,0,0)].filter(p=>p.status==="published");
+/* ===== Capa de servicios Dropi (sin conectar: no hay endpoints verificados) ===== */
+const DropiService={connected:false,_n(){throw new Error("Dropi no conectado: requiere backend y credenciales oficiales.")},
+getCatalog(){return this._n()},getStock(){return this._n()},createOrder(){return this._n()},trackOrder(){return this._n()}};
+/* ===== Utilidades ===== */
+const $=s=>document.querySelector(s),cur=n=>new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(n);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cap=c=>`<svg viewBox="0 0 200 120" width="100%" aria-hidden="true"><path d="M30 80C30 30 70 12 105 12s65 18 65 68z" fill="${c}"/><path d="M20 80h150c20 0 30 6 30 12 0 8-20 12-70 12H40c-14 0-20-8-20-24z" fill="${c}" opacity=".85"/><path d="M30 80h140" stroke="#0003" stroke-width="3"/><circle cx="105" cy="14" r="5" fill="#0004"/></svg>`;
+const toast=m=>{const t=$("#toast");t.textContent=m;t.className="on";clearTimeout(toast.t);toast.t=setTimeout(()=>t.className="",2200)};
+let fav=new Set,cart=[];
+try{fav=new Set(JSON.parse(localStorage.getItem("v_fav")||"[]"));cart=JSON.parse(localStorage.getItem("v_cart")||"[]")}catch(e){}
+const save=()=>{try{localStorage.setItem("v_fav",JSON.stringify([...fav]));localStorage.setItem("v_cart",JSON.stringify(cart))}catch(e){}};
+const byId=id=>P.find(p=>p.id===id);
+cart=cart.filter(l=>byId(l.id));
+/* ===== Estructura inicial ===== */
+document.title=CFG.brand+" · Gorras de moda urbana en Colombia (demo)";
+$("#top").textContent=CFG.bar;$("#logo").innerHTML=CFG.brand.slice(0,-1)+"<b>"+CFG.brand.slice(-1)+"</b>";$("#flogo").textContent=CFG.brand;
+$("#heroArt").innerHTML=cap("#c8501e");
+const uniq=k=>[...new Set(P.map(p=>p[k]))].sort();
+const opts=(el,a,all)=>$(el).innerHTML=`<option value="">${all}</option>`+a.map(x=>`<option>${esc(x)}</option>`).join("");
+opts("#fBrand",uniq("brand"),"Todas");opts("#fType",uniq("type"),"Todos");
+opts("#fColor",[...new Set(P.flatMap(p=>p.colors.map(c=>c[0])))].sort(),"Todos");
+const maxP=Math.max(...P.map(p=>p.price));$("#fPrice").min=0;$("#fPrice").max=maxP;$("#fPrice").value=maxP;
+$("#colNote").textContent="Marcas de demostración ficticias. Solo se mostrarán marcas reales con autorización y producto auténtico.";
+$("#cols").innerHTML=CFG.cols.filter(c=>P.some(p=>p[c.k]===c.v)).map((c,i)=>`<button class="col" data-i="${i}">${cap(C[["neg","ter","azu","ver","are","blan"][i%6]][1])}<b>${esc(c.v)}</b><span>${esc(c.d)} · Explorar →</span></button>`).join("");
+$("#dep").innerHTML='<option value="">Selecciona…</option>'+"Amazonas,Antioquia,Arauca,Atlántico,Bogotá D.C.,Bolívar,Boyacá,Caldas,Caquetá,Casanare,Cauca,Cesar,Chocó,Córdoba,Cundinamarca,Guainía,Guaviare,Huila,La Guajira,Magdalena,Meta,Nariño,Norte de Santander,Putumayo,Quindío,Risaralda,San Andrés y Providencia,Santander,Sucre,Tolima,Valle del Cauca,Vaupés,Vichada".split(",").map(d=>`<option>${d}</option>`).join("");
+/* ===== Catálogo ===== */
+const sel={};
+function filtered(){const q=$("#q").value.trim().toLowerCase(),b=$("#fBrand").value,t=$("#fType").value,c=$("#fColor").value,mp=+$("#fPrice").value;
+let r=P.filter(p=>(!q||(p.name+" "+p.brand+" "+p.type).toLowerCase().includes(q))&&(!b||p.brand===b)&&(!t||p.type===t)&&(!c||p.colors.some(x=>x[0]===c))&&p.price<=mp&&(!$("#fStock").checked||p.stock>0)&&(!$("#fNew").checked||p.isNew));
+const s=$("#fSort").value;if(s==="asc")r.sort((a,b)=>a.price-b.price);else if(s==="desc")r.sort((a,b)=>b.price-a.price);else r.sort((a,b)=>(b.best-a.best)||(b.isNew-a.isNew));return r}
+function render(){$("#pv").textContent=cur($("#fPrice").value);const r=filtered();$("#count").textContent=r.length+" de "+P.length+" modelos (datos de demostración)";
+$("#grid").innerHTML=r.length?r.map(p=>{const ci=sel[p.id]||0,c=p.colors[ci];return `<article class="card"><div class="im" data-d="${p.id}" tabindex="0" role="button" aria-label="Ver detalles de ${esc(p.name)}">${cap(c[1])}${p.isNew?'<span class="tag">Nuevo</span>':p.best?'<span class="tag">Más vendido</span>':""}<span class="demo">DEMO</span></div>
+<button class="fav" data-f="${p.id}" aria-label="Guardar en favoritos" aria-pressed="${fav.has(p.id)}">${fav.has(p.id)?"♥":"♡"}</button>
+<div class="brand">${esc(p.brand)} · ${p.type}</div><b>${esc(p.name)}</b><div class="price">${cur(p.price)}</div>
+<div class="dots">${p.colors.map((x,i)=>`<button class="dot ${i===ci?"on":""}" style="background:${x[1]}" data-c="${p.id},${i}" aria-label="Color ${x[0]}"></button>`).join("")}</div>
+<div class="row"><button class="btn" data-d="${p.id}">Detalles</button><button class="btn p" data-a="${p.id}" ${p.stock?"":"disabled"}>${p.stock?"Añadir":"Agotado"}</button></div></article>`}).join(""):'<div class="empty">No hay gorras con esos filtros. <br><button class="btn" onclick="clearF()">Limpiar filtros</button></div>';
+$("#favN").textContent=fav.size;$("#cartN").textContent=cart.reduce((s,l)=>s+l.qty,0)}
+function clearF(){["#fBrand","#fType","#fColor"].forEach(s=>$(s).value="");$("#fPrice").value=maxP;$("#fStock").checked=$("#fNew").checked=false;$("#q").value="";$("#fSort").value="rel";render()}
+$("#fClear").onclick=clearF;["#q","#fBrand","#fType","#fColor","#fPrice","#fStock","#fNew","#fSort"].forEach(s=>$(s).addEventListener("input",render));
+$("#cols").onclick=e=>{const b=e.target.closest(".col");if(!b)return;const c=CFG.cols.filter(c=>P.some(p=>p[c.k]===c.v))[b.dataset.i];clearF();$(c.k==="brand"?"#fBrand":"#fType").value=c.v;render();location.hash="#tienda"};
+/* ===== Carrito ===== */
+function add(id,ci,q=1){const p=byId(id);ci=ci??(sel[id]||0);const l=cart.find(x=>x.id===id&&x.ci===ci),have=l?l.qty:0;
+if(have+q>p.stock){toast("Solo hay "+p.stock+" unidades disponibles (demo)");return false}
+l?l.qty+=q:cart.push({id,ci,qty:q});save();renderCart();render();toast("Añadido al carrito");return true}
+const totals=()=>{const sub=cart.reduce((s,l)=>s+byId(l.id).price*l.qty,0),sh=CFG.shipping;return{sub,sh,tot:sub+(sh||0)}};
+const sumHTML=()=>{const t=totals();return `<div><span>Subtotal</span><b>${cur(t.sub)}</b></div><div><span>Envío</span><span>${t.sh==null?"Por confirmar":cur(t.sh)}</span></div><div><span>Total</span><b>${cur(t.tot)}${t.sh==null?"+":""}</b></div>`};
+function renderCart(){$("#items").innerHTML=cart.length?cart.map((l,i)=>{const p=byId(l.id),c=p.colors[l.ci];return `<div class="li"><div>${cap(c[1])}</div><div><b>${esc(p.name)}</b><div class="note">${c[0]} · ${cur(p.price)}</div><div class="qty"><button data-q="${i},-1" aria-label="Menos">−</button>${l.qty}<button data-q="${i},1" aria-label="Más">+</button></div></div><div><b>${cur(p.price*l.qty)}</b><br><button class="ic" style="font-size:13px" data-r="${i}">Quitar</button></div></div>`}).join(""):'<div class="empty">Tu carrito está vacío.<br>Explora la tienda y añade tu primera gorra.</div>';
+$("#sum").innerHTML=cart.length?sumHTML():"";$("#goCk").disabled=!cart.length;$("#cartN").textContent=cart.reduce((s,l)=>s+l.qty,0);save()}
+$("#items").onclick=e=>{const q=e.target.dataset.q,r=e.target.dataset.r;if(q){const[i,d]=q.split(",").map(Number),l=cart[i];if(l.qty+d>byId(l.id).stock)return toast("Sin más stock (demo)");l.qty+=d;if(l.qty<1)cart.splice(i,1)}else if(r!=null)cart.splice(+r,1);renderCart()};
+const openCart=o=>$("#drawer").classList.toggle("open",o);$("#cartB").onclick=()=>openCart(true);$("#cartX").onclick=()=>openCart(false);
+/* ===== Detalle ===== */
+function detail(id){const p=byId(id);let ci=sel[id]||0;const rel=P.filter(x=>x.id!==id&&(x.type===p.type||x.brand===p.brand)).slice(0,3);
+const draw=()=>{$("#dlgB").innerHTML=`<div class="two"><div class="card" style="animation:none">${cap(p.colors[ci][1])}<span class="note">Imagen provisional · DEMO</span></div><div style="display:grid;gap:10px;align-content:start"><div class="brand">${esc(p.brand)} · ${p.type}</div><h3>${esc(p.name)}</h3><div class="price">${cur(p.price)}</div><p>${esc(p.desc)}</p>
+<div>Color: <b>${p.colors[ci][0]}</b></div><div class="dots">${p.colors.map((x,i)=>`<button class="dot ${i===ci?"on":""}" style="background:${x[1]}" data-k="${i}" aria-label="Color ${x[0]}"></button>`).join("")}</div>
+<div class="note">Talla: ajustable (por confirmar) · ${p.stock?"Disponible en demo ("+p.stock+")":"Agotado"}</div>
+<div class="row"><button class="btn" data-ad ${p.stock?"":"disabled"}>Añadir al carrito</button><button class="btn p" data-bn ${p.stock?"":"disabled"}>Comprar ahora</button></div>
+<a class="btn" ${CFG.whatsapp?`href="https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent("Hola, me interesa la gorra "+p.name+" ("+p.colors[ci][0]+")")}" target="_blank" rel="noopener"`:'aria-disabled="true" style="opacity:.5"'}>Consultar por WhatsApp</a>
+<p class="note"><b>Envío:</b> por confirmar. <b>Cambios y devoluciones:</b> política por definir.</p></div></div>
+<h3 style="margin:18px 0 10px;font-size:20px">Relacionados</h3><div class="cols">${rel.map(r=>`<button class="col" data-rel="${r.id}">${cap(r.colors[0][1])}<b>${esc(r.name)}</b><span>${cur(r.price)}</span></button>`).join("")}</div>`};
+draw();$("#dlgB").onclick=e=>{const t=e.target.closest("button");if(!t)return;if(t.dataset.k!=null){ci=sel[id]=+t.dataset.k;draw();render()}else if(t.dataset.rel)detail(+t.dataset.rel);else if("ad"in t.dataset)add(id,ci);else if("bn"in t.dataset&&add(id,ci)){$("#dlg").close();openCheckout()}};
+$("#dlg").showModal()}
+$("#dlgX").onclick=()=>$("#dlg").close();
+/* ===== Grid events ===== */
+$("#grid").onclick=e=>{const t=e.target.closest("[data-d],[data-a],[data-f],[data-c]");if(!t)return;const D=t.dataset;
+if(D.d)detail(+D.d);else if(D.a)add(+D.a);else if(D.f){const id=+D.f;fav.has(id)?fav.delete(id):fav.add(id);save();render()}else if(D.c){const[i,c]=D.c.split(",").map(Number);sel[i]=c;render()}};
+$("#grid").onkeydown=e=>{if(e.key==="Enter"&&e.target.dataset.d)detail(+e.target.dataset.d)};
+$("#favB").onclick=()=>{if(!fav.size)return toast("Aún no tienes favoritos");clearF();toast("Mostrando favoritos");const ids=[...fav];$("#grid").innerHTML="";const keep=P.filter(p=>fav.has(p.id));$("#count").textContent=keep.length+" favoritos";const old=filtered;$("#q").value="";$("#grid").innerHTML=keep.map(p=>`<article class="card"><div class="im" data-d="${p.id}">${cap(p.colors[0][1])}</div><b>${esc(p.name)}</b><div class="price">${cur(p.price)}</div><button class="btn" data-d="${p.id}">Detalles</button></article>`).join("");location.hash="#tienda"};
+$("#menu").onclick=()=>$("#nav").classList.toggle("open");$("#nav").onclick=()=>$("#nav").classList.remove("open");$("#heroB").onclick=()=>{$("#fNew").checked=false};
+/* ===== Checkout ===== */
+function openCheckout(){if(!cart.length)return toast("Tu carrito está vacío");openCart(false);$("#ckSum").innerHTML=cart.map(l=>`<div><span>${esc(byId(l.id).name)} (${byId(l.id).colors[l.ci][0]}) ×${l.qty}</span><span>${cur(byId(l.id).price*l.qty)}</span></div>`).join("")+sumHTML();$("#ck").showModal()}
+$("#goCk").onclick=openCheckout;$("#ckX").onclick=()=>$("#ck").close();
+$("#form").onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target)),m=[];
+if(f.n.trim().length<3)m.push("Escribe tu nombre completo.");if(!/^\S+@\S+\.\S+$/.test(f.e))m.push("Correo no válido.");if(!/^3\d{9}$/.test(f.t.replace(/\s/g,"")))m.push("Teléfono móvil colombiano de 10 dígitos (empieza por 3).");
+if(!f.d)m.push("Elige un departamento.");if(!f.c.trim())m.push("Indica la ciudad.");if(f.a.trim().length<6)m.push("Escribe la dirección completa.");
+$("#ckErr").textContent=m.join(" ");if(m.length)return;
+/* Producción: POST a backend que valide precios/stock y llame a Dropi + pasarela. */
+$("#ckErr").textContent="";$("#ck").close();toast("Demo: pedido validado, pero NO enviado ni cobrado");};
+/* ===== Políticas ===== */
+const POL={faq:["Preguntas frecuentes","Pendiente: redactar con información real del negocio."],ret:["Cambios y devoluciones","Pendiente: definir según proveedor y Ley 1480 de 2011 (Estatuto del Consumidor)."],priv:["Política de privacidad","Pendiente: redactar con asesoría legal."],terms:["Términos y condiciones","Pendiente: redactar con asesoría legal."],data:["Tratamiento de datos personales","Pendiente: Ley 1581 de 2012; definir responsable, finalidades y canales de consulta."]};
+document.querySelectorAll("[data-pol]").forEach(b=>b.onclick=()=>{const[t,x]=POL[b.dataset.pol];$("#dlgB").innerHTML=`<h3>${t}</h3><p>${x}</p><p class="note">Texto provisional: reemplazar antes de publicar.</p>`;$("#dlg").showModal()});
+/* ===== WhatsApp ===== */
+const wa=$("#wa");if(CFG.whatsapp){wa.href="https://wa.me/"+CFG.whatsapp+"?text="+encodeURIComponent("Hola "+CFG.brand+", quiero información");wa.removeAttribute("aria-disabled")}else{wa.title="Configura CFG.whatsapp para activarlo";wa.onclick=e=>{e.preventDefault();toast("WhatsApp sin configurar (CFG.whatsapp)")}}
+$("#waF").onclick=()=>wa.click();
+/* ===== Admin (demo) ===== */
+function fin(){const g=id=>+$(id).value||0,ship=g("#aShip"),com=g("#aCom"),ads=g("#aAds"),oth=g("#aOth"),fix=g("#aFix"),ord=g("#aOrd");let sum=0;
+$("#fin").innerHTML="<tr><th>Producto</th><th>Precio</th><th>Costo</th><th>Contribución</th><th>Margen %</th><th>Equilibrio (pedidos)</th></tr>"+P.map(p=>{const c=p.price-p.cost-ship-p.price*com/100-ads-oth;sum+=c;return `<tr><td>${esc(p.name)}</td><td>${cur(p.price)}</td><td>${cur(p.cost)}</td><td>${cur(c)}</td><td>${p.price>0?(c/p.price*100).toFixed(1)+"%":"—"}</td><td>${c>0?Math.ceil(fix/c):"—"}</td></tr>`}).join("");
+const avg=sum/P.length;$("#finNote").textContent="Escenario: "+ord+" pedidos × contribución media "+cur(avg)+" = "+cur(avg*ord)+" de contribución; menos costos fijos = "+cur(avg*ord-fix)+" de utilidad estimada (no garantizada; excluye devoluciones, impuestos y otros costos)."}
+document.querySelectorAll(".adm input").forEach(i=>i.oninput=fin);
+function route(){const a=location.hash==="#adminSec";$("#adminSec").hidden=!a;if(a)fin()}addEventListener("hashchange",route);route();
+renderCart();render();
+</script></body></html>
